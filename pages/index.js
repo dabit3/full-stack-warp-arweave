@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { contract } from '../configureWarpClient'
+import ReactMarkdown from 'react-markdown'
 
 export default function Home() {
   const [posts, setPosts] = useState([])
@@ -25,7 +26,9 @@ export default function Home() {
         posts.map((post, index) => (
           <div key={index} style={postStyle}>
             <p style={titleStyle}>{post.title}</p>
-            <p style={contentStyle}>{post.content}</p>
+            <ReactMarkdown>
+              {post.content}
+            </ReactMarkdown>
           </div>
         ))
       }
@@ -50,5 +53,3 @@ const titleStyle = {
   fontSize: '34px',
   marginBottom: '0px'
 }
-
-const contentStyle = {}

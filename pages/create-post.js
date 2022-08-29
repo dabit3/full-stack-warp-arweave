@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { contract } from '../configureWarpClient'
 import { v4 as uuid } from 'uuid'
+import { useRouter } from 'next/router'
 
 export default function createPostComponent() {
   const [post, updatePost] = useState({
     title: '', content: ''
   })
+  const router = useRouter()
 
   async function createPost() {
     if (!post.title || !post.content) return
@@ -17,6 +19,7 @@ export default function createPostComponent() {
         post
       })
       console.log('result:', result)
+      router.push('/')
     } catch (err) {
       console.log('error:', err)
     }
@@ -29,11 +32,11 @@ export default function createPostComponent() {
         onChange={e => updatePost({ ...post, title: e.target.value})}
         style={inputStyle}
       />
-      <input
+      <textarea
         value={post.content}
         placeholder="Post content"
         onChange={e => updatePost({ ...post, content: e.target.value})}
-        style={inputStyle}
+        style={textAreaStyle}
       />
       <button style={buttonStyle} onClick={createPost}>Create Post</button>
     </div>
@@ -60,4 +63,11 @@ const inputStyle = {
 const buttonStyle = {
   width: '200px',
   padding: '10px 0px'
+}
+
+const textAreaStyle = {
+  width: '100%',
+  height: '300px',
+  marginBottom: '20px',
+  padding: '20px'
 }
