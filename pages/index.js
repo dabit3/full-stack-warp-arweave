@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { contract } from '../configureWarpClient'
+import { getContract } from '../configureWarpClient'
 import ReactMarkdown from 'react-markdown'
 
 export default function Home() {
@@ -8,6 +8,7 @@ export default function Home() {
     readState()
   }, [])
   async function readState() {
+    const contract = await getContract()
     try {
       const data = await contract.readState()
       console.log('data: ', data)

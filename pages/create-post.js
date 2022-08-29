@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { contract } from '../configureWarpClient'
+import { getContract } from '../configureWarpClient'
 import { v4 as uuid } from 'uuid'
 import { useRouter } from 'next/router'
 
@@ -12,7 +12,7 @@ export default function createPostComponent() {
   async function createPost() {
     if (!post.title || !post.content) return
     post.id = uuid()
-    console.log('post: ', post)
+    const contract = await getContract()
     try {
       const result = await contract.writeInteraction({
         function: "createPost",
