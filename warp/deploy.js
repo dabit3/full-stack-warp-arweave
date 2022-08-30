@@ -12,7 +12,11 @@ async function deploy() {
     src: contractsource
   })
   fs.writeFileSync('../transactionid.js', `export const transactionId = "${contractTxId}"`)
+
   const contract = warp.contract(contractTxId).connect(wallet)
+  await contract.writeInteraction({
+    function: 'initialize'
+  })
   const { cachedValue } = await contract.readState()
 
   console.log('Contract state: ', cachedValue)

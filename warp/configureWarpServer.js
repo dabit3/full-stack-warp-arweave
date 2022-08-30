@@ -5,11 +5,11 @@ import fs from 'fs'
 *  environment can be 'local' | 'testnet' | 'mainnet' | 'custom';
 */
 
-const environment = process.env.WARPENV || 'local'
+const environment = process.env.WARPENV || 'testnet'
 let warp
 
-if (environment === 'local') {
-  warp = WarpFactory.forLocal()
+if (environment === 'testnet') {
+  warp = WarpFactory.forTestnet()
 } else if (environment === 'mainnet') {
   warp = WarpFactory.forMainnet()
 } else {
@@ -18,8 +18,10 @@ if (environment === 'local') {
 
 async function configureWallet() {
   try {
-    if (environment === 'local') {
-      return await warp.testing.generateWallet()
+    if (environment === 'testnet') {
+      const wallet = await warp.testing.generateWallet()
+      fs.writeFileSync('../testwallet.json', JSON.stringify(wallet))
+      return wallet
     } else if (environment === 'mainnet') {
       return JSON.parse(fs.readFileSync('../wallet.json', 'utf-8'))
     } else {
