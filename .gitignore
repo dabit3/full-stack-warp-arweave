@@ -3,6 +3,7 @@
 cache
 logs
 wallet.json
+testwallet.json
 # dependencies
 /node_modules
 /.pnp
