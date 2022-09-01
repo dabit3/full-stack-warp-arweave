@@ -4,6 +4,8 @@ cache
 logs
 wallet.json
 testwallet.json
+transactionid.js
+
 # dependencies
 /node_modules
 /.pnp
