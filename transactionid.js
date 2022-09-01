@@ -1,1 +1,0 @@
-export const transactionId = "WUxNWzzDaELACmzpM9VZe1hLhpAR2t2FN3Pe3b8dZu0"
