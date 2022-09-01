@@ -1,4 +1,6 @@
-# Full stack blog with Arweave, Warp, and Next.js
+# Full stack development with Arweave, Warp, and Next.js
+
+![Full stack development with Arweave, Warp, and Next.js](header.jpg)
 
 This is an example of how to build a full stack application on Arweave with smart contracts running on Smarweave via Warp Protocol
 
