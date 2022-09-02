@@ -21,7 +21,3 @@ export function handle(state, action) {
   }
   return { state }
 }
-
-function isCaller() {
-  
-}
