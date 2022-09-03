@@ -19,9 +19,14 @@ if (environment === 'testnet') {
 async function configureWallet() {
   try {
     if (environment === 'testnet') {
-      const { jwk } = await warp.testing.generateWallet()
-      fs.writeFileSync('../testwallet.json', JSON.stringify(jwk))
-      return jwk
+      const testWallet = JSON.parse(fs.readFileSync('../testwallet.json', 'utf-8'))
+      if (testWallet) {
+        return testWallet
+      } else {
+        const { jwk } = await warp.testing.generateWallet()
+        fs.writeFileSync('../testwallet.json', JSON.stringify(jwk))
+        return jwk
+      }
     } else if (environment === 'mainnet') {
       return JSON.parse(fs.readFileSync('../wallet.json', 'utf-8'))
     } else {
