@@ -3,8 +3,8 @@ import { transactionId } from '../transactionid.js'
 
 async function read() {
   const contract = warp.contract(transactionId).connect();
-  const { cachedValue: value1 } = await contract.readState();
+  const { cachedValue } = await contract.readState();
 
-  console.log('value1: ', JSON.stringify(value1))
+  console.log('state: ', JSON.stringify(cachedValue))
 }
 read()
