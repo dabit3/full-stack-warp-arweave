@@ -1,8 +1,9 @@
-import { warp } from './configureWarpServer.js'
+import { warp, configureWallet } from './configureWarpServer.js'
 import { transactionId } from '../transactionid.js'
 
 async function read() {
-  const contract = warp.contract(transactionId).connect();
+  let wallet = await configureWallet()
+  const contract = warp.contract(transactionId).connect(wallet);
   const { cachedValue } = await contract.readState();
 
   console.log('state: ', JSON.stringify(cachedValue))
