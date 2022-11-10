@@ -22,7 +22,7 @@ async function configureWallet() {
       try {
         return JSON.parse(fs.readFileSync('../testwallet.json', 'utf-8'))
       } catch (err) {
-        const { jwk } = await warp.testing.generateWallet()
+        const { jwk } = await warp.generateWallet()
         fs.writeFileSync('../testwallet.json', JSON.stringify(jwk))
         return jwk
       }
